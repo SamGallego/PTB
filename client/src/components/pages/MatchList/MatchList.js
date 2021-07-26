@@ -20,8 +20,7 @@ class MatchList extends Component {
             .then(response => this.setState(response.data))
             .catch(err => console.log(err))
     }
-
-
+    
     componentDidMount = () => {
         this.loadMatch()
     }

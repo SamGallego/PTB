@@ -84,4 +84,16 @@ router.get("/details/:id/matches/list", (req, res, next) => {
         .catch(err => res.status(500).json({ code: 500, message: 'Error YUKI YUKI YUKI league', err }))
 
 })
+
+router.delete('/details/:id', (req, res) => {
+    const {
+        id
+    } = req.params
+
+    League
+        .findByIdAndDelete(id)
+        .then(() => res.json({}))
+        .catch(err => console.log(err))
+})
+
 module.exports = router;

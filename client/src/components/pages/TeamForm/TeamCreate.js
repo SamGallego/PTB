@@ -16,7 +16,6 @@ class TeamForm extends Component {
         this.teamService = new TeamService()
     }
 
-// aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
     handleInputChange = e => {
         const { name, value } = e.target
         this.setState({ [name]: value })

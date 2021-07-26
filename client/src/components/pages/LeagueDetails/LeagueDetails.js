@@ -1,6 +1,6 @@
 import { Component } from 'react'
 import LeagueService from './../../../services/league.service'
-import { Container, Row, Col } from 'react-bootstrap'
+import { Container, Row, Col, Button } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import TeamCard from './TeamCard'
 
@@ -21,6 +21,13 @@ class LeagueDetails extends Component {
         this.leagueService
             .getLeagueDetails(this.props.match.params.id) //Preguntar a Teo por el props, este es padre, porque nos sirve props?
             .then(response => this.setState(response.data))
+            .catch(err => console.log(err))
+    }
+
+    deleteLeague = () => {
+        this.leagueService
+            .getLeagueDelete(this.props.match.params.id)
+            .then(() => this.props.history.push('/league/list'))
             .catch(err => console.log(err))
     }
 
@@ -54,22 +61,9 @@ class LeagueDetails extends Component {
                                     {this.state.league.teams.map(elm => <TeamCard key={elm._id} {...elm} />)}
                                 </Row>
 
-                                {/* <p>Teams: {this.state.league.teams[0].name}</p>
-                                <p>Players: {this.state.league.teams[0].players}</p> */}
-
-
                             </Col>
 
-                            {/* <Col md={3}>
-                                {this.state.league.playersA.map(elm => <PlayerCard {...elm} />)}
-                                <p>Team A Goals:{this.state.league.score.teamA}</p>
-                            </Col> */}
-
-                            {/* <Col md={3}>
-                                {this.state.league.playersB.map(elm => <PlayerCard {...elm} />)}
-                                <p>Team B Goals:{this.state.league.score.teamB}</p>
-                            </Col> */}
-
+                            <Button onClick={() => this.deleteLeague()} style={{ marginTop: '20px', width: '50%' }} variant="danger" type="submit">Delete Match</Button>
 
                             <Link to="/league/list" className="btn btn-dark">Back to List</Link>
 

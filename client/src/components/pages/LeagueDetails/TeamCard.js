@@ -1,6 +1,7 @@
 import { Col, Card, Button } from "react-bootstrap"
+import { Link } from 'react-router-dom'
 
-const TeamCard = ({ name, picture, players, capacity }) => {
+const TeamCard = ({ name, picture, players, capacity, _id }) => {
     return (
         <>
             <Col md={6}>
@@ -10,9 +11,9 @@ const TeamCard = ({ name, picture, players, capacity }) => {
                         <Card.Title>{name}</Card.Title>
                         <Card.Text>{players}</Card.Text>
                         <Card.Text>{capacity}</Card.Text>
-                        {/* <Link to={`/team/details/${_id}`}>
+                        <Link to={`/team/details/${_id}`}>
                             <Button variant="dark" block >Team Details</Button>
-                        </Link> */}
+                        </Link>
                     </Card.Body>
                 </Card>
             </Col>

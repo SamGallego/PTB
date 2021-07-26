@@ -74,15 +74,6 @@ class Signup extends Component {
                                 <Form.Control type="text" value={this.state.nick} onChange={this.handleInputChange} name="nick" />
                             </Form.Group>
 
-
-                            {/* <Form.Label>Position</Form.Label>
-                            <Form.Control as="select">
-                                <option>GK</option>
-                                <option>DF</option>
-                                <option>MD</option>
-                                <option>ST</option>
-                            </Form.Control> */}
-
                             <Form.Label>Position</Form.Label>
                             <Form.Control as="select" aria-label="Default select example">
                                 <option value={this.state.position}>GK</option>

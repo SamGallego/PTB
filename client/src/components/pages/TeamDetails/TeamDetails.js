@@ -1,14 +1,15 @@
 import { Component } from 'react'
 import TeamService from './../../../services/team.service'
-import { Container, Row, Col, Card } from 'react-bootstrap'
+import { Container, Row, Col, Card, Button } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
+import TeamCard from '../LeagueDetails/TeamCard'
 
 
 
 class TeamDetails extends Component {
 
-    constructor() {
-        super()
+    constructor(props) {
+        super(props)
         this.state = {
             team: {}
         }
@@ -21,11 +22,20 @@ class TeamDetails extends Component {
             .getTeamDetails(this.props.match.params.id)
             .then(response => {
                 console.log(response.data)
-                this.setState(
-                    this.state = {
-                        team: response.data.team
-                    }
+                this.setState({
+                    team: response.data.team
+                }
                 )
+            })
+            .catch(err => console.log(err))
+        }
+        
+    deleteTeam = () => {
+        this.teamService
+            .getTeamDelete(this.props.match.params.id)
+            .then(() => {
+                console.log(this.props.history)
+                this.props.history.push('/team/list')
             })
             .catch(err => console.log(err))
     }
@@ -55,6 +65,7 @@ class TeamDetails extends Component {
 
 
                     </Row>
+                    <Button onClick={() => this.deleteTeam()} style={{ marginTop: '20px', width: '50%' }} variant="danger" type="submit">Delete Team</Button>
                 </Container>
             </>
             )

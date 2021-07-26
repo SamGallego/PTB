@@ -66,14 +66,21 @@ router.post('/details/:id', (req, res) => {
         .catch(err => res.status(500).json({ code: 500, message: 'Error YUKI YUKI YUKI league', err }))
 })
 
-router.post('/details/:id', (req, res) => {
-    const { id } = req.params
+
+
+//Match.findByIdAndUpdate(id, {$push: {campo: valor}})
+//                             $pull: 
+router.delete('/details/:id', (req, res) => {
+    const {
+        id
+    } = req.params
 
     Match
         .findByIdAndDelete(id)
-        .then(() => res.redirect('/'))
+        .then(() => res.json({}))
         .catch(err => console.log(err))
 })
+
 
 
 module.exports = router;

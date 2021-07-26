@@ -1,6 +1,6 @@
 import { Component } from 'react'
 import MatchService from './../../../services/match.service'
-import { Container, Row, Col } from 'react-bootstrap'
+import { Container, Row, Col, Button } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import PlayerCard from './PlayerCardDetails'
 
@@ -20,19 +20,24 @@ class MatchDetails extends Component {
         this.matchService
             .getMatchDetails(this.props.match.params.id)
             .then(response => {
-                this.setState(
-                    this.state = {
-                        match: response.data.match
-                    }
-                )
+                this.setState({
+                    match: response.data.match
+                })
             })
             .catch(err => console.log(err))
     }
 
+    deleteMatch = () => {
+        this.matchService
+            .getMatchDelete(this.props.match.params.id)
+            .then(() => this.props.history.push('/match/list'))
+            .catch(err => console.log(err))
+    }
+
+
     componentDidMount = () => {
         this.loadMatchDetails()
     }
-
 
     render() {
 
@@ -66,12 +71,13 @@ class MatchDetails extends Component {
 
 
                             <Link to="/match/list" className="btn btn-dark">Back to List</Link>
-
-
                         </Row>
+
                     }
 
                 </Container>
+                <Button onClick={() => this.deleteMatch()} style={{ marginTop: '20px', width: '50%' }} variant="danger" type="submit">Delete Match</Button>
+
             </>
             )
         )
