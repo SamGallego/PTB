@@ -55,6 +55,7 @@ router.get("/details/:id", (req, res, next) => {
 
     Team
         .findById(req.params.id)
+        // .populate('name')
         .then((team) => res.json({
             code: 200,
             team

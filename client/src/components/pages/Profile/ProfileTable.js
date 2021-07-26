@@ -13,7 +13,8 @@ class Table extends Component {
             lastname: this.props.lastname,
             nick: this.props.nick,
             position: this.props.position,
-            picture: this.props.picture
+            picture: this.props.picture,
+            description: this.props.description
 
         }
         this.ProfileService = new ProfileService()
@@ -42,6 +43,7 @@ class Table extends Component {
                         <Col md={12}>Last name: <p>{this.state.lastname}</p></Col>
                         <Col md={12}>Nick: <p>{this.state.nick}</p></Col>
                         <Col md={12}>Position: <p>{this.state.position}</p></Col>
+                        <Col md={12}>Description: <p>{this.state.description}</p></Col>
                     </Row>
                     <Row>
                         <Button>Edit</Button>

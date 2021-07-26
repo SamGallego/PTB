@@ -41,7 +41,7 @@ router.get('/details/:id', (req, res) => {
 
     League
         .findById(req.params.id)
-        .populate('teams')
+        // .populate('teams')
         .then((league) => res.json({ code: 200, league }))
         .catch(err => res.status(500).json({ code: 500, message: 'Error YUKI YUKI YUKI league', err }))
 
