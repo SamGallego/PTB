@@ -33,6 +33,13 @@ class MatchDetails extends Component {
             .catch(err => console.log(err))
     }
 
+    // EditMatch = () => {
+    //     this.matchService
+    //         .getMatchEdit(this.props.match.params.id)
+    //         .then(() => this.props.history.push('/match/list'))
+    //         .catch(err => console.log(err))
+    // }
+
 
     componentDidMount = () => {
         this.loadMatchDetails()

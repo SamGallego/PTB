@@ -1,7 +1,7 @@
 import { Col, Card, Button } from "react-bootstrap"
 import { Link } from 'react-router-dom'
 
-const LeagueCard = ({ name, limit, _id }) => {
+const LeagueCard = ({ name, limit, _id, description }) => {
     return (
         <>
 
@@ -11,6 +11,7 @@ const LeagueCard = ({ name, limit, _id }) => {
                     <Card.Body>
                         <Card.Title>{name}</Card.Title>
                         <Col md={6}><p>{limit}</p></Col>
+                        <Col md={6}><p>{description}</p></Col>
                         <Link to={`/league/details/${_id}`}>
                             <Button variant="dark" block >Details</Button>
                         </Link>

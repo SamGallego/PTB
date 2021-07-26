@@ -71,9 +71,7 @@ router.post('/details/:id', (req, res) => {
 //Match.findByIdAndUpdate(id, {$push: {campo: valor}})
 //                             $pull: 
 router.delete('/details/:id', (req, res) => {
-    const {
-        id
-    } = req.params
+    const {id} = req.params
 
     Match
         .findByIdAndDelete(id)

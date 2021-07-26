@@ -69,15 +69,8 @@ router.get("/details/:id", (req, res, next) => {
 
 router.post('/details/:id', (req, res) => {
 
-    const {
-        id
-    } = req.params
-    const {
-        name,
-        picture,
-        players,
-        capacity
-    } = req.body
+    const {id} = req.params
+    const {name,picture,players,capacity} = req.body
 
     Team
         .findByIdAndUpdate(id, {

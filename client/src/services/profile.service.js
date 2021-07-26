@@ -10,7 +10,7 @@ class ProfileService {
     }
 
     getOneProfile = id => this.app.get(`/${id}`)
-    editProfile = id => this.app.post(`/${id}`)
+    postEditProfile = (id, newUser) => this.app.put(`/${id}`, newUser)
 }
 
 export default ProfileService

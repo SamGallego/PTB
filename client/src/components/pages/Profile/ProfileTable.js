@@ -13,18 +13,25 @@ class Table extends Component {
             lastname: this.props.lastname,
             nick: this.props.nick,
             position: this.props.position,
-            picture: this.props.picture
+            picture: this.props.picture,
+            description: this.props.description
 
         }
-        this.ProfileService = new ProfileService()
+        this.profileService = new ProfileService
     }
 
     loadProfile = () => {
-        this.ProfileService
+        this.profileService
             .getOneProfile(this.props.match.params.id)
             .then(responseFromServer => this.setState(responseFromServer.data.profile))
             .catch(err => console.log(err))
     }
+
+    // editProfile = () => {
+    //     this.profileService
+    //         .postEditProfile(this.props.match.params.id, this.state)
+    //         .catch(err => console.log(err))
+    // }
 
     componentDidMount = () => {
         this.loadProfile()
@@ -42,9 +49,10 @@ class Table extends Component {
                         <Col md={12}>Last name: <p>{this.state.lastname}</p></Col>
                         <Col md={12}>Nick: <p>{this.state.nick}</p></Col>
                         <Col md={12}>Position: <p>{this.state.position}</p></Col>
+                        <Col md={12}>Description: <p>{this.state.description}</p></Col>
                     </Row>
                     <Row>
-                        <Button>Edit</Button>
+                        <Button onClick={() => this.editProfile()}>Edit</Button>
                     </Row>
                 </Container>
 
