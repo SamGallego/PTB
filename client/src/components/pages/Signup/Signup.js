@@ -1,7 +1,6 @@
 import { Component } from 'react'
 import { Container, Form, Button, Row, Col } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
-
 import AuthService from './../../../services/auth.service'
 
 class Signup extends Component {
@@ -13,7 +12,8 @@ class Signup extends Component {
             password: '',
             lastname: '',
             nick: '',
-            position: '',
+            position: 'GK',
+            picture: '',
             description: ''
         }
         this.authService = new AuthService()
@@ -30,11 +30,10 @@ class Signup extends Component {
 
         e.preventDefault()
 
-        const { name, password } = this.state
 
         this.authService
-            .signup(name, password)
-            .then(() => this.props.history.push('/login'))          // Redirect with RRD props
+            .signup(this.state.name, this.state.password, this.state.lastname, this.state.nick, this.state.position, this.state.picture, this.state.description)
+            .then(() => this.props.history.push('/'))
             .catch(err => console.log(err))
     }
 
@@ -74,12 +73,18 @@ class Signup extends Component {
                                 <Form.Control type="text" value={this.state.nick} onChange={this.handleInputChange} name="nick" />
                             </Form.Group>
 
+                            <Form.Group controlId="picture">
+                                <Form.Label>Picture</Form.Label>
+                                <Form.Control type="text" value={this.state.picture} onChange={this.handleInputChange} name="picture" />
+                            </Form.Group>
+
+
                             <Form.Label>Position</Form.Label>
-                            <Form.Control as="select" aria-label="Default select example">
-                                <option value={this.state.position}>GK</option>
-                                <option value={this.state.position}>DF</option>
-                                <option value={this.state.position}>MD</option>
-                                <option value={this.state.position}>ST</option>
+                            <Form.Control name="position" onChange={this.handleInputChange} as="select" aria-label="Default select example">
+                                <option value="GK">GK</option>
+                                <option value="DF">DF</option>
+                                <option value="MD">MD</option>
+                                <option value="ST">ST</option>
                             </Form.Control>
 
                             <Form.Group controlId="description">

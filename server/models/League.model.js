@@ -15,11 +15,7 @@ const leagueSchema = new Schema({
     date: {
         start: Date
     },
-    limit: Number,
-    table: [{
-        type: Schema.Types.ObjectId, ref: 'Team',
-        type: Schema.Types.ObjectId, ref: 'Match'
-    }]
+    limit: Number
 },
     {
         timestamps: true

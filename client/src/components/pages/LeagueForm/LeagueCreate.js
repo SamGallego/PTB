@@ -32,7 +32,7 @@ class LeagueForm extends Component {
         e.preventDefault()
 
         this.leagueService
-            .postLeagueCreate(this.state.name, this.state.lat, this.state.lng, this.state.date, this.state.description)
+            .postLeagueCreate(this.state.name, this.state.lat, this.state.lng, this.state.date, this.state.description, this.state.limit)
             .then(this.setState({
                 name: '',
                 lat: '',
