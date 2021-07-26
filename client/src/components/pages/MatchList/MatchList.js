@@ -34,7 +34,6 @@ class MatchList extends Component {
                 <Container>
                     <p>List</p>
                     {this.state.match.length ? this.state.match.map(elm => <MatchCard  {...elm}/>) : "loading bish"}
-                   
                 </Container>
             </>
             )
