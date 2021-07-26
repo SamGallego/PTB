@@ -63,18 +63,18 @@ router.post('/details/:id', (req, res) => {
         .catch(err => res.status(500).json({ code: 500, message: 'Error YUKI YUKI YUKI league', err }))
 })
 
-router.get('/details/:id/table', (req, res) => {
+router.get('/:id/table', (req, res) => {
 
     League
         .findById(req.params.id)
-        .populate("matches table")
-        .select("name table")
+        .populate("matches")
+        .select("name matches")
         .then((table) => res.json({ code: 200, table }))
         .catch(err => res.status(500).json({ code: 500, message: 'Error YUKI YUKI YUKI league', err }))
 
 })
 
-router.get("/details/:id/matches/list", (req, res, next) => {
+router.get("/:id/matches/list", (req, res, next) => {
 
     League
         .findById(req.params.id)

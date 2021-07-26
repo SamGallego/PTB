@@ -12,14 +12,13 @@ import LeagueCreate from '../pages/LeagueForm/LeagueCreate'
 import TeamList from '../pages/TeamList/TeamList'
 import TeamDetails from '../pages/TeamDetails/TeamDetails'
 import TeamCreate from '../pages/TeamForm/TeamCreate'
+import Table from '../pages/LeagueTable/TablePage'
 
 
 
 const Routes = ({ storeUser, loggedUser }) => {
-    console.log(storeUser, 'storeUser')
-    console.log(loggedUser, 'loggedUser')
     return (
-        //URLS DEL NAVEGADOR !!! NAVEGADOR
+
         <Switch>
             <Route path="/login" exact render={props => <Login {...props} storeUser={storeUser} />} />
             <Route path="/signup" exact render={props => <Signup {...props} />} />
@@ -27,15 +26,14 @@ const Routes = ({ storeUser, loggedUser }) => {
             <Route path="/" exact render={() => <Index />} />
             <Route path="/match/list" exact render={props => <MatchPage {...props} />} />
             <Route path="/match/details/:id" exact render={props => <MatchDetails {...props} />} />
-            <Route path="/match/create" exact render={props => <MatchForm {...props} loggedUser={loggedUser} storeUser={storeUser} />}  />
+            <Route path="/match/create" exact render={props => <MatchForm {...props} loggedUser={loggedUser} />}  />
             <Route path="/league/list" exact render={props => <LeagueList {...props} />} />
             <Route path="/league/details/:id" exact render={props => <LeagueDetails {...props} />} />
             <Route path="/league/create" exact render={props => <LeagueCreate {...props} />} />
+            <Route path="/league/:id/table" exact render={props => <Table {...props} />} />
             <Route path="/team/list" exact render={props => <TeamList {...props} />} />
             <Route path="/team/details/:id" exact render={props => <TeamDetails {...props} />} />
-            <Route path="/team/create" exact render={props => <TeamCreate {...props} loggedUser={loggedUser} storeUser={storeUser} />} />
-            
-
+            <Route path="/team/create" exact render={props => <TeamCreate {...props} loggedUser={loggedUser} />} />
 
         </Switch>
     )

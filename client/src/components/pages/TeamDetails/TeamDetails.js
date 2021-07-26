@@ -47,7 +47,7 @@ class TeamDetails extends Component {
                             <h1>{this.state.team.name}</h1>
                             <Card.Img variant="top" src={this.state.team.picture} />
                             <p>Capacity: {this.state.team.capacity}</p>
-                            <p>players: {this.state.team.players}</p>
+                            <p>Players: {this.state.team.players}</p>
                         </Col>
 
 
