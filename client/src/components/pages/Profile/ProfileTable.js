@@ -2,6 +2,7 @@ import { Component } from "react"
 import React from 'react'
 import ProfileService from './../../../services/profile.service'
 import { Container, Row, Col, Button } from 'react-bootstrap'
+import { Link } from 'react-router-dom'
 
 class Table extends Component {
     constructor(props) {
@@ -27,17 +28,10 @@ class Table extends Component {
             .catch(err => console.log(err))
     }
 
-    // editProfile = () => {
-    //     this.profileService
-    //         .postEditProfile(this.props.match.params.id, this.state)
-    //         .catch(err => console.log(err))
-    // }
-
     componentDidMount = () => {
         this.loadProfile()
     }
 
-// Queda por poner: El usuario puede editar su propio perfil y borrar.(Revisar porque al editar se eliminan los datos no editados). Condicional password.
 
     render() {
         return (
@@ -52,7 +46,7 @@ class Table extends Component {
                         <Col md={12}>Description: <p>{this.state.description}</p></Col>
                     </Row>
                     <Row>
-                        <Button onClick={() => this.editProfile()}>Edit</Button>
+                        <Link >Edit</Link>
                     </Row>
                 </Container>
 

@@ -19,7 +19,7 @@ router.get('/:id', (req, res) => {
         .catch(err => res.status(500).json({ code: 500, message: 'Error fetching profile', err }))
 })
 
-router.put('/:id', (req, res) => {
+router.put('editprofile/:id', (req, res) => {
 
     const { id } = req.params
     const { name, lastname, password, nick, position, teams, picture, description } = req.body

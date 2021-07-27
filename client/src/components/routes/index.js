@@ -1,6 +1,7 @@
 import Login from '../pages/Login/Login'
 import Signup from '../pages/Signup/Signup'
 import Profile from '../pages/Profile/ProfilePage'
+import EditProfileForm from '../pages/Profile/EditProfile' //
 import Index from '../pages/Index/IndexPage'
 import { Switch, Route } from 'react-router-dom'
 import MatchPage from '../pages/MatchList/MatchPage'
@@ -13,6 +14,7 @@ import TeamList from '../pages/TeamList/TeamList'
 import TeamDetails from '../pages/TeamDetails/TeamDetails'
 import TeamCreate from '../pages/TeamForm/TeamCreate'
 import Table from '../pages/LeagueTable/TablePage'
+
 
 
 
@@ -34,6 +36,7 @@ const Routes = ({ storeUser, loggedUser }) => {
             <Route path="/team/list" exact render={props => <TeamList {...props} />} />
             <Route path="/team/details/:id" exact render={props => <TeamDetails {...props} />} />
             <Route path="/team/create" exact render={props => <TeamCreate {...props} loggedUser={loggedUser} />} />
+            <Route path="/editprofile/:id" exact render={props => <EditProfileForm {...props} />} />
 
         </Switch>
     )
