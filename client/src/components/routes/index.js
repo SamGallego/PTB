@@ -25,7 +25,7 @@ const Routes = ({ storeUser, loggedUser }) => {
             <Route path="/profile/:id" exact render={props => <Profile {...props} />} />
             <Route path="/" exact render={() => <Index />} />
             <Route path="/match/list" exact render={props => <MatchPage {...props} />} />
-            <Route path="/match/details/:id" exact render={props => <MatchDetails {...props} />} />
+            <Route path="/match/details/:id" exact render={props => <MatchDetails {...props} loggedUser={loggedUser} />} />
             <Route path="/match/create" exact render={props => <MatchForm {...props} loggedUser={loggedUser} />}  />
             <Route path="/league/list" exact render={props => <LeagueList {...props} />} />
             <Route path="/league/details/:id" exact render={props => <LeagueDetails {...props} />} />
