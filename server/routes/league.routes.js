@@ -68,7 +68,6 @@ router.get('/:id/table', (req, res) => {
     League
         .findById(req.params.id)
         .populate("matches")
-        .select("name matches")
         .then((table) => res.json({ code: 200, table }))
         .catch(err => res.status(500).json({ code: 500, message: 'Error YUKI YUKI YUKI league', err }))
 

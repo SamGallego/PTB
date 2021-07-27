@@ -23,7 +23,7 @@ class Table extends Component {
             .getTable(this.props.match.params.id)
             .then(response => {
 
-                console.log(response)
+                console.log("===============", response)
                 this.setState({
                     nameLeague: response.data.table.name,
                     nameTeam: response.data.table.matches[0].name,

@@ -12,6 +12,7 @@ class MatchDetails extends Component {
             match: undefined
         }
         this.matchService = new MatchService()
+
     }
 
 
@@ -39,6 +40,38 @@ class MatchDetails extends Component {
     //         .then(() => this.props.history.push('/match/list'))
     //         .catch(err => console.log(err))
     // }
+
+    joinTeamA = () => {
+
+        this.matchService
+            .joinTeamA(this.props.match.params.id, this.props.loggedUser._id)
+            .then(response => {
+                this.setState({
+                    match: {
+                        ...this.state.match,
+                        playersA: [...this.state.match.playersA, this.props.loggedUser]
+                    }
+                })
+            })
+            .catch(err => console.log(err))
+    }
+
+    joinTeamB = () => {
+
+        this.matchService
+            .joinTeamB(this.props.match.params.id, this.props.loggedUser._id)
+            .then(response => {
+                this.setState({
+                    match: {
+                        ...this.state.match,
+                        playersB: [...this.state.match.playersB, this.props.loggedUser]
+                    }
+                })
+            })
+            .catch(err => console.log(err))
+    }
+
+
 
 
     componentDidMount = () => {
@@ -69,10 +102,12 @@ class MatchDetails extends Component {
                             <Col md={3}>
                                 {this.state.match.playersA.map(elm => <PlayerCard {...elm} />)}
                                 <p>Team A Goals:{this.state.match.score.teamA}</p>
+                                <Button onClick={() => this.joinTeamA()}>Join Team A</Button>
                             </Col>
                             <Col md={3}>
                                 {this.state.match.playersB.map(elm => <PlayerCard {...elm} />)}
                                 <p>Team B Goals:{this.state.match.score.teamB}</p>
+                                <Button onClick={() => this.joinTeamB()}>Join Team B</Button>
                             </Col>
 
 
@@ -80,6 +115,7 @@ class MatchDetails extends Component {
                         </Row>
 
                     }
+
 
                 </Container>
                 <Button onClick={() => this.deleteMatch()} style={{ marginTop: '20px', width: '50%' }} variant="danger" type="submit">Delete Match</Button>
