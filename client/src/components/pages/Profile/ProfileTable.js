@@ -9,13 +9,13 @@ class Table extends Component {
         super(props)
         this.state = {
 
-            name: this.props.name,
-            password: this.props.password,
-            lastname: this.props.lastname,
-            nick: this.props.nick,
-            position: this.props.position,
-            picture: this.props.picture,
-            description: this.props.description
+            name: '',
+            password: '',
+            lastname: '',
+            nick: '',
+            position: '',
+            picture: '',
+            description: ''
 
         }
         this.profileService = new ProfileService
@@ -46,7 +46,9 @@ class Table extends Component {
                         <Col md={12}>Description: <p>{this.state.description}</p></Col>
                     </Row>
                     <Row>
-                        <Link >Edit</Link>
+                        <Link to={`/profile/editprofile/${this.props.match.params.id}`}>
+                            <Button variant="dark" block >Edit Profile</Button>
+                        </Link>
                     </Row>
                 </Container>
 

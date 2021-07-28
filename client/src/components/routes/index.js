@@ -1,7 +1,7 @@
 import Login from '../pages/Login/Login'
 import Signup from '../pages/Signup/Signup'
 import Profile from '../pages/Profile/ProfilePage'
-import EditProfileForm from '../pages/Profile/EditProfile' //
+import EditProfileForm from '../pages/Profile/EditProfile'
 import Index from '../pages/Index/IndexPage'
 import { Switch, Route } from 'react-router-dom'
 import MatchPage from '../pages/MatchList/MatchPage'
@@ -24,6 +24,7 @@ const Routes = ({ storeUser, loggedUser }) => {
         <Switch>
             <Route path="/login" exact render={props => <Login {...props} storeUser={storeUser} />} />
             <Route path="/signup" exact render={props => <Signup {...props} />} />
+            <Route path="/profile/editprofile/:id" exact render={props => <EditProfileForm {...props} loggedUser={loggedUser}/>} />
             <Route path="/profile/:id" exact render={props => <Profile {...props} />} />
             <Route path="/" exact render={() => <Index />} />
             <Route path="/match/list" exact render={props => <MatchPage {...props} />} />
@@ -36,7 +37,6 @@ const Routes = ({ storeUser, loggedUser }) => {
             <Route path="/team/list" exact render={props => <TeamList {...props} />} />
             <Route path="/team/details/:id" exact render={props => <TeamDetails {...props} />} />
             <Route path="/team/create" exact render={props => <TeamCreate {...props} loggedUser={loggedUser} />} />
-            <Route path="/editprofile/:id" exact render={props => <EditProfileForm {...props} />} />
 
         </Switch>
     )

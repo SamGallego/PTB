@@ -90,10 +90,6 @@ router.put('/details/:id/joinB', (req, res) => {
         .catch(err => res.status(500).json({ code: 500, message: 'Error YUKI YUKI YUKI league', err }))
 })
 
-
-
-//Match.findByIdAndUpdate(id, {$push: {campo: valor}})
-//                             $pull: 
 router.delete('/details/:id', (req, res) => {
     const { id } = req.params
 

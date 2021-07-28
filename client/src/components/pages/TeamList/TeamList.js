@@ -17,8 +17,7 @@ class TeamList extends Component {
     loadTeam = () => {
         this.teamService
             .getTeamList()
-            .then(response => { console.log(response)
-                this.setState(response.data)})
+            .then(response =>this.setState(response.data))
             .catch(err => console.log(err))
     }
 

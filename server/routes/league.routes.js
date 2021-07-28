@@ -16,11 +16,6 @@ router.post('/create', (req, res) => {
         coordinates: [lat, lng]
     }
 
-    // const table = {
-    //     teamsTable: [],
-    //     matchesTable: []
-    // }
-
     League
         .create({ name, teams, matches, location, description, date, limit})
         .then((league) => res.json({ code: 200, message: 'league created', league }))

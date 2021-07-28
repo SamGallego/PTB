@@ -20,12 +20,9 @@ class TeamDetails extends Component {
     loadTeamDetails = () => {
         this.teamService
             .getTeamDetails(this.props.match.params.id)
-            .then(response => {
-                console.log(response.data)
-                this.setState({
+            .then(response => { this.setState({
                     team: response.data.team
-                }
-                )
+                })
             })
             .catch(err => console.log(err))
         }
@@ -33,9 +30,7 @@ class TeamDetails extends Component {
     deleteTeam = () => {
         this.teamService
             .getTeamDelete(this.props.match.params.id)
-            .then(() => {
-                console.log(this.props.history)
-                this.props.history.push('/team/list')
+            .then(() => {this.props.history.push('/team/list')
             })
             .catch(err => console.log(err))
     }

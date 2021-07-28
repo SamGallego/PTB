@@ -8,8 +8,6 @@ class LeagueForm extends Component {
         super()
         this.state = {
             name: '',
-            // teams: [],
-            // matches: [],
             lat: '',
             lng: '',
             date: '',
