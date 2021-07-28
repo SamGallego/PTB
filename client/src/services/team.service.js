@@ -13,7 +13,7 @@ class TeamService {
     postTeamCreate = (name, picture, players, capacity) => this.app.post('/create', { name, picture, players, capacity})
     getTeamList = () => this.app.get('/list')
     getTeamDetails = id => this.app.get(`/details/${id}`)
-    getTeamEdit = id => this.app.put(`/details/${id}`)
+    teamEdit = (id, name, picture, players, capacity) => this.app.put(`/details/${id}`, name, picture, players, capacity)
     getTeamDelete = id => this.app.delete(`/details/${id}`)
 
 }

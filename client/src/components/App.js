@@ -27,7 +27,7 @@ class App extends Component {
     }
 
     logout = ()=> {
-        this.setState({loggedUser: false})
+        this.setState({loggedUser: null})
         this.authService.logout()
     }
 

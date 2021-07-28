@@ -1,15 +1,18 @@
 import { Navbar, Nav, NavDropdown, Container } from 'react-bootstrap'
-import { Link } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
 import AuthService from '../../../services/auth.service'
 
-const Navigation = ({ storeUser, loggedUser }) => {
+const Navigation = ({ storeUser, loggedUser, history }) => {
 
     const authserVice = new AuthService()
 
     const logout = () => {
         authserVice
             .logout()
-            .then(() => storeUser(undefined))
+            .then(() =>{
+                storeUser(null)
+                history.push("/")
+            })
             .catch(err => console.log(err))
     }
 
@@ -77,7 +80,7 @@ const Navigation = ({ storeUser, loggedUser }) => {
 
                             </>
 
-                            <NavDropdown.Item as={Link} to="/" onClick={logout}>Logout</NavDropdown.Item>
+                            <NavDropdown.Item onClick={logout}>Logout</NavDropdown.Item>
 
                         </NavDropdown>
                     </Nav>
@@ -87,4 +90,4 @@ const Navigation = ({ storeUser, loggedUser }) => {
     )
 }
 
-export default Navigation
+export default withRouter(Navigation)

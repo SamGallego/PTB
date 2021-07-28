@@ -54,17 +54,18 @@ router.get("/details/:id", (req, res, next) => {
 router.put('/details/:id', (req, res) => {
 
     const { id } = req.params
-    const { name, lat, lng, score, date, description, playersA, playersB, capacity } = req.body
+    const { name, lat, lng, date, description } = req.body
     const location = {
         type: 'Point',
         coordinates: [lat, lng]
     }
 
     Match
-        .findByIdAndUpdate(id, { name, location, score, date, description, playersA, playersB, capacity })
+        .findByIdAndUpdate(id, { name, location, lat, lng, date, description })
         .then((match) => res.json({ code: 200, match }))
         .catch(err => res.status(500).json({ code: 500, message: 'Error YUKI YUKI YUKI league', err }))
 })
+
 
 router.put('/details/:id/joinA', (req, res) => {
 
