@@ -6,6 +6,13 @@ const Team = require('./../models/Team.model')
 router.get("/", (req, res, next) =>
     res.json({ message: "league" }))
 
+/**
+ * apuntar partidos a liga
+ * panel para crea crear partidos de liga
+ *      equipos apuntados   League.find({teeams: {teams._id}})
+ *      crear matches *
+ */
+
 
 router.post('/create', (req, res) => {
 
@@ -22,6 +29,7 @@ router.post('/create', (req, res) => {
         .catch(err => res.status(500).json({ code: 500, message: 'Error YUKI YUKI YUKI league', err }))
 
 })
+
 
 router.get("/list", (req, res, next) => {
 
@@ -63,11 +71,11 @@ router.put('/details/:id/join', (req, res) => {
 
     const { id } = req.params
   
-    Team.find({players: id})
+    Team.find({ players: req.session.currentUser._id})
     .then(team => {
-     //   team._id
+   
         League
-            .findByIdAndUpdate(id, { $push: { team: userId } })
+            .findByIdAndUpdate(id, { $push: { teams: team._id } })
             .populate('')
             .then((match) => res.json({ code: 200, match }))
             .catch(err => res.status(500).json({ code: 500, message: 'Error YUKI YUKI YUKI league', err }))

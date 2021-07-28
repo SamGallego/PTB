@@ -32,7 +32,7 @@ class MatchList extends Component {
 
             (<>
                 <Container>
-                    <p>List</p>
+                    <h2>List</h2>
                     {this.state.match.length ? this.state.match.map(elm => <MatchCard  {...elm}/>) : "loading bish"}
                 </Container>
             </>

@@ -5,7 +5,10 @@ const teamSchema = new Schema({
     players: [{
         type: Schema.Types.ObjectId, ref: 'User'
     }],
-    capacity: Number
+    capacity: Number,
+    owner: {
+        type: Schema.Types.ObjectId, ref: 'User'
+    }
 },
     {
         timestamps: true

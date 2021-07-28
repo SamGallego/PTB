@@ -19,8 +19,7 @@ import Table from '../pages/LeagueTable/TablePage'
 
 
 const Routes = ({ storeUser, loggedUser }) => {
-    // console.log(storeUser, 'storeUser')
-    // console.log(loggedUser, 'loggedUser')
+
 
     return (
 

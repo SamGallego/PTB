@@ -4,8 +4,8 @@ import { Link } from 'react-router-dom'
 const TeamCard = ({ name, picture, players, capacity, _id }) => {
     return (
         <>
-            <Col md={6}>
-                <Card style={{ width: '18rem' }}>
+            <Col md={4}>
+                <Card >
                     <Card.Img variant="top" src={picture} />
                     <Card.Body>
                         <Card.Title>{name}</Card.Title>

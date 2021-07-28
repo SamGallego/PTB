@@ -3,6 +3,7 @@ import MatchService from './../../../services/match.service'
 import { Container, Row, Col, Button } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import PlayerCard from './PlayerCardDetails'
+import './MatchDetails.css'
 
 class MatchDetails extends Component {
 
@@ -111,6 +112,7 @@ class MatchDetails extends Component {
                             </Col>
 
 
+                            <Button onClick={() => this.deleteMatch()} className='button' variant="danger" type="submit">Delete Match</Button>
                             <Link to="/match/list" className="btn btn-dark">Back to List</Link>
                         </Row>
 
@@ -118,7 +120,6 @@ class MatchDetails extends Component {
 
 
                 </Container>
-                <Button onClick={() => this.deleteMatch()} style={{ marginTop: '20px', width: '50%' }} variant="danger" type="submit">Delete Match</Button>
 
             </>
             )
