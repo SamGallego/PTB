@@ -9,6 +9,7 @@ import { Spinner } from 'react-bootstrap'
 
 
 
+
 class App extends Component {
 
     constructor() {
@@ -44,6 +45,8 @@ class App extends Component {
                 <Navigation storeUser={this.storeUser} loggedUser={this.state.loggedUser} />
 
                 <Routes storeUser={this.storeUser} loggedUser={this.state.loggedUser} />
+
+                
 
             </>)
         )

@@ -1,12 +1,17 @@
 import { Container } from 'react-bootstrap'
+import './IndexPage.css'
+import background from './background.jpg'
 
 const Index = () => {
-    // console.log(loggedUser)
+
 
     return (
         <Container>
-            <h1>Welcome to PTB! The specialone</h1>
-            <p>Lets park some buses</p>
+            <img class='background' src='background.jpg'></img>
+            <h1>Welcome to PTB!</h1>
+            <h1 class='football'> Football is more than a sport, it's a life style</h1>
+            <p>Let's play!</p>
+           
 
         </Container>
     )

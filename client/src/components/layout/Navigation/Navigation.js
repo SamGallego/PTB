@@ -1,6 +1,7 @@
 import { Navbar, Nav, NavDropdown, Container } from 'react-bootstrap'
 import { Link, withRouter } from 'react-router-dom'
 import AuthService from '../../../services/auth.service'
+import './Navigation.css'
 
 const Navigation = ({ storeUser, loggedUser, history }) => {
 
@@ -17,27 +18,27 @@ const Navigation = ({ storeUser, loggedUser, history }) => {
     }
 
     return (
-        <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+        <Navbar collapseOnSelect expand="lg" bg="success" variant="dark">
             <Container>
                 <Navbar.Brand as={Link} to="/">
                     <img
-                        src="https://i.gyazo.com/0d2e1a98576e1e85e337f3364511271b.png"
-                        width="100"
-                        height="100"
+                        src= 'football.png'
+                        width="50"
+                        height="50"
                         className="d-inline-block align-top"
                         alt="React Bootstrap logo"
                     />
                 </Navbar.Brand>
 
 
-                <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-                <Navbar.Collapse id="responsive-navbar-nav">
+                <Navbar.Toggle bg="light" aria-controls="responsive-navbar-nav" />
+                <Navbar.Collapse bg="light" id="responsive-navbar-nav">
 
                     {loggedUser
                         ?
                         <Nav className="me-auto">
 
-                            <NavDropdown title="Team" id="collasible-nav-dropdown">
+                            <NavDropdown title="Team" id="collasible-nav-dropdown" >
 
                                 <NavDropdown.Item as={Link} to="/team/create">Create</NavDropdown.Item>
                                 <NavDropdown.Item as={Link} to="/team/list">Join</NavDropdown.Item>
