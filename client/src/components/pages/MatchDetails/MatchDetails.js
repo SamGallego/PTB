@@ -35,13 +35,6 @@ class MatchDetails extends Component {
             .catch(err => console.log(err))
     }
 
-    // EditMatch = () => {
-    //     this.matchService
-    //         .getMatchEdit(this.props.match.params.id)
-    //         .then(() => this.props.history.push('/match/list'))
-    //         .catch(err => console.log(err))
-    // }
-
     joinTeamA = () => {
 
         this.matchService
@@ -71,9 +64,6 @@ class MatchDetails extends Component {
             })
             .catch(err => console.log(err))
     }
-
-
-
 
     componentDidMount = () => {
         this.loadMatchDetails()
@@ -114,6 +104,12 @@ class MatchDetails extends Component {
 
                             <Button onClick={() => this.deleteMatch()} className='button' variant="danger" type="submit">Delete Match</Button>
                             <Link to="/match/list" className="btn btn-dark">Back to List</Link>
+                            
+
+                        <Link to={`/match/details/editmatch/${this.props.match.params.id}`}>
+                            <Button variant="info" block >Edit Match information</Button>
+                        </Link>
+
                         </Row>
 
                     }

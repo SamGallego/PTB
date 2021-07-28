@@ -93,6 +93,11 @@ class TeamDetails extends Component {
                         <Link to="/team/list" className="btn btn-dark">Back to List</Link>
 
                     </Row>
+
+                    <Link to={`/team/details/editteam/${this.props.match.params.id}`}>
+                            <Button variant="info" block >Edit Team information</Button>
+                    </Link>
+                    <Button onClick={() => this.deleteTeam()} variant="danger" type="submit">Delete Team</Button>
                 </Container>
             </>
             )
