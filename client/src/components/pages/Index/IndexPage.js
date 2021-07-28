@@ -1,6 +1,7 @@
 import { Container } from 'react-bootstrap'
 
 const Index = () => {
+    // console.log(loggedUser)
 
     return (
         <Container>

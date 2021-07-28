@@ -4,7 +4,7 @@ import Routes from './routes'
 import AuthService from '../services/auth.service'
 import Navigation from './layout/Navigation/Navigation'
 import { Component } from 'react'
-
+import { Spinner } from 'react-bootstrap'
 
 
 
@@ -23,7 +23,7 @@ class App extends Component {
         this.authService
             .isLoggedIn()
             .then(theLoggedUser => this.storeUser(theLoggedUser.data))
-            .catch(() => this.storeUser(undefined))
+            .catch(() => this.storeUser(null))
     }
 
     logout = ()=> {
@@ -36,12 +36,16 @@ class App extends Component {
     render() {
 
         return (
+            this.state.loggedUser === undefined 
+            ?
+                <Spinner/> 
+            :(
             <>
                 <Navigation storeUser={this.storeUser} loggedUser={this.state.loggedUser} />
 
                 <Routes storeUser={this.storeUser} loggedUser={this.state.loggedUser} />
 
-            </>
+            </>)
         )
     }
 }

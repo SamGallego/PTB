@@ -2,6 +2,9 @@ import { Component } from 'react'
 import { Container, Form, Button, Row, Col } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import AuthService from './../../../services/auth.service'
+import UploadService from './../../../services/uploads.service'
+import './Signup.css'
+
 
 class Signup extends Component {
 
@@ -17,6 +20,7 @@ class Signup extends Component {
             description: ''
         }
         this.authService = new AuthService()
+        this.uploadService = new UploadService()
     }
 
 
@@ -33,8 +37,20 @@ class Signup extends Component {
 
         this.authService
             .signup(this.state.name, this.state.password, this.state.lastname, this.state.nick, this.state.position, this.state.picture, this.state.description)
-            .then(() => this.props.history.push('/'))
+            .then(() => this.props.history.push('/login'))
             .catch(err => console.log(err))
+    }
+
+    handleFileUpload = e => {
+
+        const uploadData = new FormData()
+        uploadData.append('imageData', e.target.files[0])
+
+        this.uploadService
+            .uploadImage(uploadData)
+            .then(response => this.setState({ picture: response.data.secure_url}))
+            .catch(err => console.log(err))
+
     }
 
 
@@ -73,9 +89,9 @@ class Signup extends Component {
                                 <Form.Control type="text" value={this.state.nick} onChange={this.handleInputChange} name="nick" />
                             </Form.Group>
 
-                            <Form.Group controlId="picture">
+                            <Form.Group controlId="picture" className="picture">
                                 <Form.Label>Picture</Form.Label>
-                                <Form.Control type="text" value={this.state.picture} onChange={this.handleInputChange} name="picture" />
+                                <Form.Control type="file" onChange={this.handleFileUpload} />
                             </Form.Group>
 
 

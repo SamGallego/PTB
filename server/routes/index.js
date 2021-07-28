@@ -5,5 +5,6 @@ module.exports = app =>{
     app.use("/api/team",require("./team.routes"))
     app.use("/api/match", require("./match.routes"))
     app.use("/api/league", require("./league.routes"))
+    app.use("/api/upload", require("./upload.routes"))
 }
 
