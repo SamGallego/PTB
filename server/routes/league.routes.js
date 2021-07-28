@@ -36,7 +36,7 @@ router.get('/details/:id', (req, res) => {
 
     League
         .findById(req.params.id)
-        // .populate('teams')
+        .populate({path: 'teams', populate: {path: "players"}})
         .then((league) => res.json({ code: 200, league }))
         .catch(err => res.status(500).json({ code: 500, message: 'Error YUKI YUKI YUKI league', err }))
 
@@ -56,6 +56,24 @@ router.post('/details/:id', (req, res) => {
         .findByIdAndUpdate(id, { name, matches, location, date, limit, teams })
         .then((league) => res.json({ code: 200, league }))
         .catch(err => res.status(500).json({ code: 500, message: 'Error YUKI YUKI YUKI league', err }))
+})
+
+
+router.put('/details/:id/join', (req, res) => {
+
+    const { id } = req.params
+  
+    Team.find({players: id})
+    .then(team => {
+     //   team._id
+        League
+            .findByIdAndUpdate(id, { $push: { team: userId } })
+            .populate('')
+            .then((match) => res.json({ code: 200, match }))
+            .catch(err => res.status(500).json({ code: 500, message: 'Error YUKI YUKI YUKI league', err }))
+    })
+
+
 })
 
 router.get('/:id/table', (req, res) => {
