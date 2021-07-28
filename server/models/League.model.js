@@ -12,9 +12,7 @@ const leagueSchema = new Schema({
         coordinates: [Number],
     },
     description: String,
-    date: {
-        start: Date
-    },
+    date: Date,
     limit: Number
 },
     {

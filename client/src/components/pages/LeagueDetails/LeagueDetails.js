@@ -19,7 +19,7 @@ class LeagueDetails extends Component {
 
     loadLeagueDetails = () => {
         this.leagueService
-            .getLeagueDetails(this.props.match.params.id) //Preguntar a Teo por el props, este es padre, porque nos sirve props?
+            .getLeagueDetails(this.props.match.params.id)
             .then(response => this.setState(response.data))
             .catch(err => console.log(err))
     }
@@ -33,6 +33,21 @@ class LeagueDetails extends Component {
 
     componentDidMount = () => {
         this.loadLeagueDetails()
+    }
+
+    joinLeague = () => {
+
+        this.leagueService
+            .joinLeague(this.props.match.params.id, this.props.loggedUser._id)
+            .then(response => {
+                this.setState({
+                    league: {
+                        ...this.state.league,
+                        League: [...this.state.league.teams, this.props.teams._id]
+                    }
+                })
+            })
+            .catch(err => console.log(err))
     }
 
 
@@ -54,7 +69,6 @@ class LeagueDetails extends Component {
 
                                 <p>Date: {this.state.league.date}</p>
                                 <p>Limit: {this.state.league.limit}</p>
-                                {/* <p>Coordinates: {this.state.league.location.coordinates}</p> */}
                                 <p>Description: {this.state.league.description}</p>
 
                                 <Row>
@@ -62,8 +76,11 @@ class LeagueDetails extends Component {
                                 </Row>
 
                             </Col>
+                            <Col md={3}>
+                                <Button onClick={() => this.joinLeague()}>Join League</Button>
+                            </Col>
 
-                            <Button onClick={() => this.deleteLeague()} style={{ marginTop: '20px', width: '50%' }} variant="danger" type="submit">Delete Match</Button>
+                            <Button onClick={() => this.deleteLeague()} variant="danger" type="submit">Delete Match</Button>
 
                             <Link to="/league/list" className="btn btn-dark">Back to List</Link>
 

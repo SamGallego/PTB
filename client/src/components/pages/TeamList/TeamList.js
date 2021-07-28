@@ -1,6 +1,6 @@
 import { Component } from 'react'
 import TeamService from './../../../services/team.service'
-import { Container} from 'react-bootstrap'
+import { Container, Row } from 'react-bootstrap'
 import TeamCard from '../LeagueDetails/TeamCard'
 
 class TeamList extends Component {
@@ -17,7 +17,7 @@ class TeamList extends Component {
     loadTeam = () => {
         this.teamService
             .getTeamList()
-            .then(response =>this.setState(response.data))
+            .then(response => this.setState(response.data))
             .catch(err => console.log(err))
     }
 
@@ -33,8 +33,12 @@ class TeamList extends Component {
 
             (<>
                 <Container>
-                    <p>Team List</p>
-                    {this.state.team.length ? this.state.team.map(elm => <TeamCard  {...elm}/>) : "loading bish"}
+                    <h1>Team List</h1>
+                    <Row md={4}>
+                        {this.state.team.length ? this.state.team.map(elm => <TeamCard  {...elm} />) : "loading bish"}
+
+                    </Row>
+
                 </Container>
             </>
             )

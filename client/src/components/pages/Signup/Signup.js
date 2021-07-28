@@ -99,7 +99,7 @@ class Signup extends Component {
                             <Form.Control name="position" onChange={this.handleInputChange} as="select" aria-label="Default select example">
                                 <option value="GK">GK</option>
                                 <option value="DF">DF</option>
-                                <option value="MD">MD</option>
+                                <option value="MC">MC</option>
                                 <option value="ST">ST</option>
                             </Form.Control>
 

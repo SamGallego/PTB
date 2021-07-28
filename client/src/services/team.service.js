@@ -10,11 +10,13 @@ class TeamService {
     }
 
     getTeamCreate = () => this.app.get('/create')
-    postTeamCreate = (name, picture, players, capacity) => this.app.post('/create', { name, picture, players, capacity})
+    postTeamCreate = (name, picture, players, capacity, owner) => this.app.post('/create', { name, picture, players, capacity, owner})
     getTeamList = () => this.app.get('/list')
     getTeamDetails = id => this.app.get(`/details/${id}`)
     teamEdit = (id, name, picture, players, capacity) => this.app.put(`/details/${id}`, name, picture, players, capacity)
     getTeamDelete = id => this.app.delete(`/details/${id}`)
+    joinTeam = (id, userId) => this.app.put(`/details/${id}/join`, { userId })
+
 
 }
 

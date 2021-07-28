@@ -1,6 +1,8 @@
 import { Component } from 'react'
 import { Form, Button, Container } from 'react-bootstrap'
 import TeamService from '../../../services/team.service'
+import UploadService from './../../../services/uploads.service'
+import './TeamCreate.css'
 
 class TeamForm extends Component {
 
@@ -14,6 +16,7 @@ class TeamForm extends Component {
 
         }
         this.teamService = new TeamService()
+        this.uploadService = new UploadService()
     }
 
     handleInputChange = e => {
@@ -27,7 +30,7 @@ class TeamForm extends Component {
         e.preventDefault()
 
         this.teamService
-            .postTeamCreate(this.state.name, this.state.picture, this.state.players, this.state.capacity)
+            .postTeamCreate(this.state.name, this.state.picture, this.state.players, this.state.capacity, this.props.loggedUser._id)
             .then(this.setState({
                 name: '',
                 picture: '',
@@ -35,6 +38,18 @@ class TeamForm extends Component {
                 capacity: 7
             }))
             .catch(err => console.log(err))
+    }
+
+    handleFileUpload = e => {
+
+        const uploadData = new FormData()
+        uploadData.append('imageData', e.target.files[0])
+
+        this.uploadService
+            .uploadImage(uploadData)
+            .then(response => this.setState({ picture: response.data.secure_url }))
+            .catch(err => console.log(err))
+
     }
 
     render() {
@@ -48,12 +63,14 @@ class TeamForm extends Component {
                         <Form.Control type="text" value={this.state.name} onChange={this.handleInputChange} name="name" />
                     </Form.Group>
 
-                    <Form.Group controlId="picture">
+                    <Form.Group controlId="picture" className="picture">
                         <Form.Label>Picture</Form.Label>
-                        <Form.Control type="text" value={this.state.picture} onChange={this.handleInputChange} name="picture" />
+                        <Form.Control type="file" onChange={this.handleFileUpload}/>
                     </Form.Group>
 
-                    <Button style={{ marginTop: '20px', width: '100%' }} variant="dark" type="submit">Create Team</Button>
+                    <hr></hr>
+
+                    <Button variant="dark" type="submit">Create Team</Button>
 
                 </Form>
 
