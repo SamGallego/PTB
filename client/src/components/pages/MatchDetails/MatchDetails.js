@@ -10,7 +10,8 @@ class MatchDetails extends Component {
     constructor() {
         super()
         this.state = {
-            match: undefined
+            match: undefined,
+            date: undefined
         }
         this.matchService = new MatchService()
 
@@ -22,7 +23,8 @@ class MatchDetails extends Component {
             .getMatchDetails(this.props.match.params.id)
             .then(response => {
                 this.setState({
-                    match: response.data.match
+                    match: response.data.match,
+                    date: new Date(response.data.match.date)
                 })
             })
             .catch(err => console.log(err))
@@ -83,7 +85,8 @@ class MatchDetails extends Component {
                         <Row className="justify-content-around">
                             <Col md={3}>
                                 <h1>Match: {this.state.match.name}</h1>
-                                <p>Date: {this.state.match.date}</p>
+                                <p>Date: {this.state.date.getDate()}-{this.state.date.getMonth() + 1}-{this.state.date.getFullYear()}</p>
+                                <p>Hour: {this.state.date.getHours()}:{this.state.date.getMinutes()}</p>
                                 <p>Capacity: {this.state.match.capacity}</p>
                                 <p>Coordinates: {this.state.match.location.coordinates}</p>
                                 <p>Description: {this.state.match.description}</p>

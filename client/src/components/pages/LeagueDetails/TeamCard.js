@@ -9,8 +9,8 @@ const TeamCard = ({ name, picture, players, capacity, _id }) => {
                     <Card.Img variant="top" src={picture} />
                     <Card.Body>
                         <Card.Title>{name}</Card.Title>
-                        <Card.Text>{players}</Card.Text>
-                        <Card.Text>{capacity}</Card.Text>
+                        {players.map(elm => <Card.Text>{elm.name}</Card.Text>)}
+                        <Card.Text>{players.length}/{capacity}</Card.Text>
                         <Link to={`/team/details/${_id}`}>
                             <Button variant="dark" block >Team Details</Button>
                         </Link>

@@ -20,6 +20,7 @@ router.get("/list", (req, res, next) => {
 
     Team
         .find()
+        .populate('players')
         .then((team) => res.json({ code: 200, team }))
         .catch(err => res.status(500).json({ code: 500, message: 'Error YUKI YUKI YUKI team', err }))
 
@@ -29,7 +30,7 @@ router.get("/details/:id", (req, res, next) => {
 
     Team
         .findById(req.params.id)
-        // .populate('name')
+        .populate('players')
         .then((team) => res.json({ code: 200, team }))
         .catch(err => res.status(500).json({ code: 500, message: 'Error YUKI YUKI YUKI team', err }))
 

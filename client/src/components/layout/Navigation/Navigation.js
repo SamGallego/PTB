@@ -72,13 +72,17 @@ const Navigation = ({ storeUser, loggedUser, history }) => {
                             ''
                         }
                         <NavDropdown title="Account" id="collasible-nav-dropdown">
-
+                            {!loggedUser
+                                ?
                             <>
 
                                 <NavDropdown.Item as={Link} to="/login">Login</NavDropdown.Item>
                                 <NavDropdown.Item as={Link} to="/signup">Signup</NavDropdown.Item>
 
                             </>
+                                :
+                                ''
+                            }
 
                             <NavDropdown.Item onClick={logout}>Logout</NavDropdown.Item>
 

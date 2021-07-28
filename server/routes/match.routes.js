@@ -24,6 +24,7 @@ router.post('/create', (req, res) => {
         B: []
     }
 
+
     Match
         .create({ name, location, score, date, description, playersA: players.A, playersB: players.B, capacity, owner })
         .then((match) => res.json({ code: 200, message: 'match created', match }))

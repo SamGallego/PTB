@@ -1,7 +1,8 @@
 import { Col, Card, Button } from "react-bootstrap"
+import { Link } from 'react-router-dom'
 
 
-const PlayerCard = ({ name, picture, position }) => {
+const PlayerCard = ({ name, picture, position, _id }) => {
     return (
         <>
             <Col md={6}>
@@ -10,7 +11,9 @@ const PlayerCard = ({ name, picture, position }) => {
                     <Card.Body>
                         <Card.Title>{name}</Card.Title>
                         <Card.Text>{position}</Card.Text>
+                        <Link to={`/profile/${_id}`}>
                         <Button variant="primary">Profile</Button>
+                        </Link>
                     </Card.Body>
                 </Card>
             </Col>

@@ -23,9 +23,7 @@ const matchSchema = new Schema({
         coordinates: [Number],
     },
     description: String,
-    date: {
-        start: Date
-    },
+    date: Date,
     owner: {
         type: Schema.Types.ObjectId, ref: 'User'
     }
