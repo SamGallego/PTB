@@ -1,4 +1,5 @@
 {
+  "homepage": "https://ptb-one.herokuapp.com/",
   "name": "client",
   "version": "0.1.0",
   "private": true,
@@ -18,6 +19,7 @@
   "scripts": {
     "start": "REACT_APP_BASE_URL=http://localhost:5000/api react-scripts start",
     "build": "REACT_APP_BASE_URL=https://ptb-one.herokuapp.com/api react-scripts build",
+    "deploy": "rm -rf build; npm run build; cd ..; rm -rf server/public/*; mv client/build/* server/public; git add .; git commit deploy; git subtree push --prefix=server heroku_app_master master",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
