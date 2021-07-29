@@ -21,13 +21,14 @@ const Navigation = ({ storeUser, loggedUser, history }) => {
         <Navbar collapseOnSelect expand="lg" bg="success" variant="dark">
             <Container>
                 <Navbar.Brand as={Link} to="/">
-                    <img
+                    <img className='imglogo'
                         src= 'football.png'
                         width="50"
                         height="50"
                         className="d-inline-block align-top"
                         alt="React Bootstrap logo"
                     />
+                    <span className='logo'>PTB</span>
                 </Navbar.Brand>
 
 

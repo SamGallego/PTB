@@ -1,0 +1,27 @@
+body{
+    font-family: sans-serif;
+}
+
+.welcome{
+    display: flex;
+    justify-content: center;
+    margin-top: 100px;
+    margin-bottom: 30px;
+}
+
+.football{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+.play{
+    display: flex;
+    justify-content: center;
+    font-size: 50px;
+}
+
+.upcoming{
+    display: flex;
+    justify-content: center;
+}
