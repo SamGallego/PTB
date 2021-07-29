@@ -70,17 +70,18 @@ router.post('/details/:id', (req, res) => {
 router.put('/details/:id/join', (req, res) => {
 
     const { id } = req.params
-  
-    Team.find({ players: req.session.currentUser._id})
+    console.log(id, "para buscar team")
+    Team.findOne({ players: req.session.currentUser._id})
     .then(team => {
-   
+        console.log(team, "team encontrado")
         League
             .findByIdAndUpdate(id, { $push: { teams: team._id } })
             .populate('')
-            .then((match) => res.json({ code: 200, match }))
+            .then((match) => {
+                console.log(match, "wtf")
+                res.json({ code: 200, match })})
             .catch(err => res.status(500).json({ code: 500, message: 'Error YUKI YUKI YUKI league', err }))
     })
-
 
 })
 
