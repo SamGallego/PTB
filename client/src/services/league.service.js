@@ -4,7 +4,7 @@ class LeagueService {
 
     constructor() {
         this.app = axios.create({
-            baseURL: 'http://localhost:5000/api/league',
+            baseURL: `${process.env.REACT_APP_BASE_URL}/league`,
             withCredentials: true
         })
     }

@@ -4,7 +4,7 @@ class TeamService {
 
     constructor() {
         this.app = axios.create({
-            baseURL: 'http://localhost:5000/api/team',
+            baseURL: `${process.env.REACT_APP_BASE_URL}/team`,
             withCredentials: true
         })
     }
