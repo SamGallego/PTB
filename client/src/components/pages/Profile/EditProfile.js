@@ -1,6 +1,7 @@
 import { Component } from 'react'
 import { Form, Button, Container } from 'react-bootstrap'
 import ProfileService from './../../../services/profile.service'
+import UploadService from './../../../services/uploads.service'
 
 
 class EditProfileForm extends Component {
@@ -16,6 +17,7 @@ class EditProfileForm extends Component {
             description: this.props.loggedUser.description
         }
         this.profileService = new ProfileService
+        this.uploadService = new UploadService()
     }
 
 
@@ -33,6 +35,18 @@ class EditProfileForm extends Component {
             .postEditProfile(this.props.match.params.id, this.state.name, this.state.lastname, this.state.nick, this.state.position, this.state.picture, this.state.description)
             .then(() => {this.props.history.push(`/profile/${this.props.match.params.id}`)})
             .catch(err => console.log(err))
+    }
+
+    handleFileUpload = e => {
+
+        const uploadData = new FormData()
+        uploadData.append('imageData', e.target.files[0])
+
+        this.uploadService
+            .uploadImage(uploadData)
+            .then(response => this.setState({ picture: response.data.secure_url }))
+            .catch(err => console.log(err))
+
     }
 
    
@@ -70,7 +84,7 @@ class EditProfileForm extends Component {
 
                     <Form.Group controlId="Picture">
                         <Form.Label>Picture</Form.Label>
-                        <Form.Control type="text" value={this.state.picture} onChange={e =>this.handleInputChange(e)} name="picture" />
+                        <Form.Control type="file" onChange={this.handleFileUpload} />
                     </Form.Group>
 
                     <Form.Group controlId="Description">
