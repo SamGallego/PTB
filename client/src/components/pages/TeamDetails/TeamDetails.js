@@ -19,6 +19,10 @@ class TeamDetails extends Component {
         this.teamService = new TeamService()
     }
 
+    componentDidMount = () => {
+        this.loadTeamDetails()
+
+    }
 
     loadTeamDetails = () => {
         this.teamService
@@ -55,10 +59,7 @@ class TeamDetails extends Component {
             .catch(err => console.log(err))
     }
 
-    componentDidMount = () => {
-        this.loadTeamDetails()
-
-    }
+    
 
     joinTeam = () => {
 
