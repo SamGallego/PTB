@@ -17,7 +17,7 @@ class LeagueService {
     getLeagueDelete = id => this.app.post(`/details/${id}`)
     getTable = id => this.app.get(`/${id}/table`)
     getMatches = id => this.app.get(`/${id}/matches/list`)
-    joinLeague = (id, userId) => this.app.put(`/details/${id}/joinLeague`, { userId })
+    joinLeague = (id, userId) => this.app.put(`/details/${id}/join`, { userId })
 
 }
 

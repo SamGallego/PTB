@@ -16,8 +16,8 @@
     "web-vitals": "^1.1.2"
   },
   "scripts": {
-    "start": "REACT_APP_BASE_URL=http://localhost:5000/api react-scripts start",
-    "build": "REACT_APP_BASE_URL=https://ptb-one.herokuapp.com/api react-scripts build",
+    "start": "dotenv -e .env.local react-scripts start",
+    "build": "dotenv -e .env.production react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
