@@ -7,7 +7,6 @@ const Index = () => {
 
     return (
         <Container>
-            <img class='background' src='background.jpg'></img>
             <h1>Welcome to PTB!</h1>
             <h1 class='football'> Football is more than a sport, it's a life style</h1>
             <p>Let's play!</p>
