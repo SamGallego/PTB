@@ -1,9 +1,8 @@
 import { Component } from 'react'
-import { Container } from 'react-bootstrap'
 import './IndexPage.css'
 import IndexService from './../../../services/match.service'
-import MatchCard from '../MatchList/MatchCard'
 import { Link } from 'react-router-dom'
+import { Container, Row, Col } from 'react-bootstrap'
 
 class Index extends Component {
 
@@ -19,10 +18,30 @@ class Index extends Component {
     render() {
         return (
             <Container >
-                <h1 className='welcome'>Welcome to PTB!</h1>
-                <h1 class='football'> Football is more than a sport, it's a life style</h1>
-                <Link className='play' to={`/signup`}>Let's play!</Link>
-                <h2 class='upcoming' >Upcoming Matches</h2>
+                <h1 class='football'> Football is more than a sport, it's a life style.</h1>
+
+                <Row>
+                    <Col md={4} className='center'>
+                        <h2><img src='/icon/soccer-player.png'></img></h2>
+                        <hr></hr>
+                        <p>Create your profile.</p>
+                    </Col>
+                    <Col md={4} className='center'>
+                        <h2><img src='/icon/football-players.png'></img></h2>
+                        <hr></hr>
+                        <p>Play with your friends and meet new friends! :D</p>
+                    </Col>
+                    <Col md={4} className='center'>
+                        <h2><img src='/icon/football-award.png'></img></h2>
+                        <hr></hr>
+                        <p>Compite and be the new champion.</p>
+                    </Col>
+
+                </Row>
+
+                {/* <hr></hr> */}
+                <Link className='play' to={`/signup`}>&#9917;   Let's play!   &#9917;</Link>
+
             </Container >
         )
     }

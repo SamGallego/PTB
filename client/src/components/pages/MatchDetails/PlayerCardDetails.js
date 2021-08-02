@@ -1,11 +1,11 @@
 import { Col, Card, Button } from "react-bootstrap"
 import { Link } from 'react-router-dom'
-
+import './PlayerCardDetails.css'
 
 const PlayerCard = ({ name, picture, position, _id }) => {
     return (
         <>
-            <Col md={6}>
+            <Col md={6} className='players'>
                 <Card style={{ width: '18rem' }}>
                     <Card.Img variant="top" src={picture} />
                     <Card.Body>

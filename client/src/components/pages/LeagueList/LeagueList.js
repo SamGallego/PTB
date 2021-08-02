@@ -3,6 +3,7 @@ import LeagueService from './../../../services/league.service'
 import LeagueCard from './LeagueCard'
 import { Component } from 'react'
 import { Row } from "react-bootstrap"
+import './LeagueList.css'
 
 
 class LeagueList extends Component {
@@ -31,7 +32,7 @@ class LeagueList extends Component {
         return (
             <>
                 <Container>
-                    <h1>League</h1>
+                    <h1>Leagues</h1>
 
                     <Row>
                         {this.state.league.length ? this.state.league.map(elm => <LeagueCard  {...elm} />) : "loading Yuki Cup"}

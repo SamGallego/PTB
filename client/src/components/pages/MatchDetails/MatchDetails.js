@@ -11,7 +11,8 @@ class MatchDetails extends Component {
         super()
         this.state = {
             match: undefined,
-            date: undefined
+            date: undefined,
+            canJoin: false
         }
         this.matchService = new MatchService()
 
@@ -24,10 +25,15 @@ class MatchDetails extends Component {
             .then(response => {
                 this.setState({
                     match: response.data.match,
-                    date: new Date(response.data.match.date)
+                    date: new Date(response.data.match.date),
+                    canJoin: this.canJoin(response.data.match)
                 })
             })
             .catch(err => console.log(err))
+    }
+
+    canJoin = (match) => {
+        return !(match.playersA.some(player => player._id == this.props.loggedUser._id) || match.playersB.some(player => player._id == this.props.loggedUser._id))
     }
 
     deleteMatch = () => {
@@ -46,7 +52,8 @@ class MatchDetails extends Component {
                     match: {
                         ...this.state.match,
                         playersA: [...this.state.match.playersA, this.props.loggedUser]
-                    }
+                    },
+                    canJoin: false
                 })
             })
             .catch(err => console.log(err))
@@ -60,8 +67,9 @@ class MatchDetails extends Component {
                 this.setState({
                     match: {
                         ...this.state.match,
-                        playersB: [...this.state.match.playersB, this.props.loggedUser]
-                    }
+                        playersB: [...this.state.match.playersB, this.props.loggedUser],
+                    },
+                    canJoin: false
                 })
             })
             .catch(err => console.log(err))
@@ -83,40 +91,47 @@ class MatchDetails extends Component {
                         <h3>Cargando</h3>
                         :
                         <Row className="justify-content-around">
-                            <Col md={3}>
-                                <h1>Match: {this.state.match.name}</h1>
+                            <Col md={3} className='col'>
+                                <h1 className='margin-botton'>{this.state.match.name}</h1>
                                 <p>Date: {this.state.date.getDate()}-{this.state.date.getMonth() + 1}-{this.state.date.getFullYear()}</p>
                                 <p>Hour: {this.state.date.getHours()}:{this.state.date.getMinutes()}</p>
                                 <p>Capacity: {this.state.match.capacity}</p>
-                                <p>Coordinates: {this.state.match.location.coordinates}</p>
+                                <p>City: {this.state.match.location.city}</p>
+                                <p>Address: {this.state.match.location.address}</p>
                                 <p>Description: {this.state.match.description}</p>
+                            <Link to={`/match/details/editmatch/${this.props.match.params.id}`}>
+                                <Button variant="success" block >Edit</Button>
+                            </Link>
 
+                                <Button onClick={() => this.deleteMatch()} className='button' variant="danger" type="submit">Delete</Button>
                             </Col>
 
-                            <Col md={3}>
+                            <Col md={4} className='col'>
+                                <h2>Local</h2>
+                                {this.state.canJoin && (
+                                    <Button className='button' onClick={() => this.joinTeamA()}>Join Local</Button>
+                                )}
                                 {this.state.match.playersA.map(elm => <PlayerCard {...elm} />)}
-                                <p>Team A Goals:{this.state.match.score.teamA}</p>
-                                <Button onClick={() => this.joinTeamA()}>Join Team A</Button>
+                                {/* <p>Team A Goals:{this.state.match.score.teamA}</p> */}
                             </Col>
-                            <Col md={3}>
+                            <Col md={4} className='col'>
+                                <h2>Guest</h2>
+                                {this.state.canJoin && (
+                                    <Button className='button' onClick={() => this.joinTeamB()}>Join Guest</Button>
+                                )}
                                 {this.state.match.playersB.map(elm => <PlayerCard {...elm} />)}
-                                <p>Team B Goals:{this.state.match.score.teamB}</p>
-                                <Button onClick={() => this.joinTeamB()}>Join Team B</Button>
+                                {/* <p>Team B Goals:{this.state.match.score.teamB}</p> */}
                             </Col>
 
 
-                            <Button onClick={() => this.deleteMatch()} className='button' variant="danger" type="submit">Delete Match</Button>
-                            <Link to="/match/list" className="btn btn-dark">Back to List</Link>
-                            
 
-                        <Link to={`/match/details/editmatch/${this.props.match.params.id}`}>
-                            <Button variant="info" block >Edit Match information</Button>
-                        </Link>
+
 
                         </Row>
 
                     }
 
+                    <Link to="/match/list" className="btn btn-dark block">Back to List</Link>
 
                 </Container>
 

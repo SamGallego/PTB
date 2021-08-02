@@ -29,7 +29,6 @@ class EditProfileForm extends Component {
 
     handleFormSubmit = e => {
         e.preventDefault()
-        console.log('entro')
        
         this.profileService
             .postEditProfile(this.props.match.params.id, this.state.name, this.state.lastname, this.state.nick, this.state.position, this.state.picture, this.state.description)

@@ -2,6 +2,7 @@ import { Component } from 'react'
 import MatchService from './../../../services/match.service'
 import MatchCard from './MatchCard'
 import { Container} from 'react-bootstrap'
+import './MatchList.css'
 
 class MatchList extends Component {
 

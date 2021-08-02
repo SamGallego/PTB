@@ -10,7 +10,7 @@ class LeagueService {
     }
 
     getLeagueCreate = () => this.app.get('/create')
-    postLeagueCreate = (name, lat, lng, date, description, limit) => this.app.post('/create', { name, lat, lng, date, description, limit })
+    postLeagueCreate = (name, city, address, date, description, limit) => this.app.post('/create', { name, city, address, date, description, limit })
     getLeagueList = () => this.app.get('/list')
     getLeagueDetails = id => this.app.get(`/details/${id}`)
     getLeagueEdit = id => this.app.post(`/details/${id}`)

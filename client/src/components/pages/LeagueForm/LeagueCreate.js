@@ -8,8 +8,8 @@ class LeagueForm extends Component {
         super()
         this.state = {
             name: '',
-            lat: '',
-            lng: '',
+            city: '',
+            address: '',
             date: '',
             description: '',
             limit: ''
@@ -30,11 +30,11 @@ class LeagueForm extends Component {
         e.preventDefault()
 
         this.leagueService
-            .postLeagueCreate(this.state.name, this.state.lat, this.state.lng, this.state.date, this.state.description, this.state.limit)
+            .postLeagueCreate(this.state.name, this.state.city, this.state.address, this.state.date, this.state.description, this.state.limit)
             .then(this.setState({
                 name: '',
-                lat: '',
-                lng: '',
+                city: '',
+                address: '',
                 date: '',
                 description: '',
                 limit: ''
@@ -53,14 +53,14 @@ class LeagueForm extends Component {
                         <Form.Control type="text" value={this.state.name} onChange={this.handleInputChange} name="name" />
                     </Form.Group>
 
-                    <Form.Group controlId="lat">
-                        <Form.Label>Lat</Form.Label>
-                        <Form.Control type="text" value={this.state.lat} onChange={this.handleInputChange} name="lat" />
+                    <Form.Group controlId="city">
+                        <Form.Label>City</Form.Label>
+                        <Form.Control type="text" value={this.state.city} onChange={this.handleInputChange} name="city" />
                     </Form.Group>
 
-                    <Form.Group controlId="lng">
-                        <Form.Label>Lng</Form.Label>
-                        <Form.Control type="text" value={this.state.lng} onChange={this.handleInputChange} name="lng" />
+                    <Form.Group controlId="address">
+                        <Form.Label>Address</Form.Label>
+                        <Form.Control type="text" value={this.state.address} onChange={this.handleInputChange} name="address" />
                     </Form.Group>
 
                     <Form.Group controlId="date">

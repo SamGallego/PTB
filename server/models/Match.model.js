@@ -19,8 +19,8 @@ const matchSchema = new Schema({
         teamB: Number
     },
     location: {
-        type: { type: String },
-        coordinates: [Number],
+        city: String,
+        address: String
     },
     description: String,
     date: Date,
@@ -34,7 +34,7 @@ const matchSchema = new Schema({
     }
 )
 
-matchSchema.index({ location: '2dsphere' })
+
 const Match = model("Match", matchSchema);
 
 module.exports = Match;

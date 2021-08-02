@@ -39,10 +39,10 @@ router.get("/details/:id", (req, res, next) => {
 router.put('/details/:id', (req, res) => {
 
     const { id } = req.params
-    const { name, picture, players, capacity } = req.body
+    const { team } = req.body
 
     Team
-        .findByIdAndUpdate(id, { name, picture, players, capacity })
+        .findByIdAndUpdate(id, { name: team.name, picture: team.picture })
         .then((team) => res.json({ code: 200, team }))
         .catch(err => res.status(500).json({ code: 500, message: 'Error YUKI YUKI YUKI team', err }))
 })

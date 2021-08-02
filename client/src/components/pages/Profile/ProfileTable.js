@@ -3,6 +3,7 @@ import React from 'react'
 import ProfileService from './../../../services/profile.service'
 import { Container, Row, Col, Button } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
+import './ProfileTable.css'
 
 class Table extends Component {
     constructor(props) {
@@ -10,12 +11,12 @@ class Table extends Component {
         this.state = {
 
             name: '',
-            password: '',
             lastname: '',
             nick: '',
             position: '',
             picture: '',
-            description: ''
+            description: '',
+            canEdit: false
 
         }
         this.profileService = new ProfileService
@@ -24,8 +25,23 @@ class Table extends Component {
     loadProfile = () => {
         this.profileService
             .getOneProfile(this.props.match.params.id)
-            .then(responseFromServer => this.setState(responseFromServer.data.profile))
+            .then(responseFromServer => {
+
+                this.setState({
+                    name: responseFromServer.data.profile.name,
+                    lastname: responseFromServer.data.profile.lastname,
+                    nick: responseFromServer.data.profile.nick,
+                    position: responseFromServer.data.profile.position,
+                    picture: responseFromServer.data.profile.picture,
+                    description: responseFromServer.data.profile.description,
+                    canEdit: this.canEdit(responseFromServer.data.profile)
+                })
+            })
             .catch(err => console.log(err))
+    }
+
+    canEdit = (perfil) => {
+        return perfil._id === this.props.loggedUser.id
     }
 
     componentDidMount = () => {
@@ -37,23 +53,30 @@ class Table extends Component {
         return (
             <>
                 <Container>
+
                     <Row>
-                        <Col md={6}>Picture: <img src={this.state.picture}></img></Col>
-                    </Row>
-                    <Row> 
-                        <Col md={6}>Name: <p>{this.state.name}</p></Col>
-                        <Col md={6}>Last name: <p>{this.state.lastname}</p></Col>
-                        <Col md={6}>Nick: <p>{this.state.nick}</p></Col>
-                        <Col md={6}>Position: <p>{this.state.position}</p></Col>
-                        <Col md={6}>Description: <p>{this.state.description}</p></Col>
+
+                        <Col md={4}>
+                            <div>
+                                <p>Name: {this.state.name}</p>
+                                <p>Last name: {this.state.lastname}</p>
+                                <p>Nick: {this.state.nick}</p>
+                                <p>Position: {this.state.position}</p>
+                                <p>Description: {this.state.description}</p>
+                                <Link to={`/profile/editprofile/${this.props.match.params.id}`}>
+                                    {this.state.canEdit || (
+                                        <Button variant="dark"  >Edit Profile</Button>
+                                    )}
+                                </Link>
+                            </div>
+                        </Col>
+                        <Col md={8}>
+                            <img className='img' src={this.state.picture}></img>
+                        </Col>
+
                     </Row>
 
 
-                    <Row>
-                        <Link to={`/profile/editprofile/${this.props.match.params.id}`}>
-                            <Button variant="dark" block >Edit Profile</Button>
-                        </Link>
-                    </Row>
                 </Container>
 
             </>

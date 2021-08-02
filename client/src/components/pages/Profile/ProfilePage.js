@@ -6,8 +6,8 @@ const ProfilePage = (props) => {
     return (
         <Container>
 
-            <h1>Profile information</h1>
-            <Table match={props.match} />
+            <h1>Profile</h1>
+            <Table match={props.match} loggedUser={props.loggedUser}/>
 
         </Container>
     )

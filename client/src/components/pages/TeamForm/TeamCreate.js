@@ -12,8 +12,8 @@ class TeamForm extends Component {
             name: '',
             picture: '',
             players: [],
-            capacity: 7
-
+            capacity: 7,
+            loading: true
         }
         this.teamService = new TeamService()
         this.uploadService = new UploadService()
@@ -31,12 +31,15 @@ class TeamForm extends Component {
 
         this.teamService
             .postTeamCreate(this.state.name, this.state.picture, this.state.players, this.state.capacity, this.props.loggedUser._id)
-            .then(this.setState({
-                name: '',
-                picture: '',
-                players: [],
-                capacity: 7
-            }))
+            .then(() => {
+                this.setState({
+                    name: '',
+                    picture: '',
+                    players: [],
+                    capacity: 7
+                })
+                this.props.history.push('/team/list')
+            })
             .catch(err => console.log(err))
     }
 
@@ -47,7 +50,9 @@ class TeamForm extends Component {
 
         this.uploadService
             .uploadImage(uploadData)
-            .then(response => this.setState({ picture: response.data.secure_url }))
+            .then(response => this.setState({
+                picture: response.data.secure_url,
+                loading: false }))
             .catch(err => console.log(err))
 
     }
@@ -65,12 +70,20 @@ class TeamForm extends Component {
 
                     <Form.Group controlId="picture" className="picture">
                         <Form.Label>Picture</Form.Label>
-                        <Form.Control type="file" onChange={this.handleFileUpload}/>
+                        <Form.Control type="file" onChange={this.handleFileUpload} />
                     </Form.Group>
 
                     <hr></hr>
-
+                    {this.state.loading === false  && 
                     <Button variant="dark" type="submit">Create Team</Button>
+                    
+                    }
+
+                    {this.state.loading && 
+                    <Button className="disabled" variant="secondary" type="submit">Create Team</Button>
+                    
+                    }
+                    
 
                 </Form>
 

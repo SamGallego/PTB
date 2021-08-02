@@ -8,15 +8,15 @@ router.get("/", (req, res, next) =>
 
 router.post('/create', (req, res) => {
 
-    const { name, lat, lng, date, description, owner } = req.body
+    const { name, city, address, date, description, owner } = req.body
 
     const score = {
         teamA: 0,
         teamB: 0
     }
     const location = {
-        type: 'Point',
-        coordinates: [lat, lng]
+        city,
+        address
     }
     const capacity = 14
     const players = {
@@ -28,7 +28,7 @@ router.post('/create', (req, res) => {
     Match
         .create({ name, location, score, date, description, playersA: players.A, playersB: players.B, capacity, owner })
         .then((match) => res.json({ code: 200, message: 'match created', match }))
-        .catch(err => res.status(500).json({ code: 500, message: 'DB error while creating user', err }))
+        .catch(err => res.status(500).json({ code: 500, message: 'DB error while creating match', err }))
 
 })
 
@@ -55,14 +55,14 @@ router.get("/details/:id", (req, res, next) => {
 router.put('/details/:id', (req, res) => {
 
     const { id } = req.params
-    const { name, lat, lng, date, description } = req.body
+    const { name, city, address, date, description } = req.body
     const location = {
-        type: 'Point',
-        coordinates: [lat, lng]
+        city,
+        address
     }
 
     Match
-        .findByIdAndUpdate(id, { name, location, lat, lng, date, description })
+        .findByIdAndUpdate(id, { name, location, date, description })
         .then((match) => res.json({ code: 200, match }))
         .catch(err => res.status(500).json({ code: 500, message: 'Error YUKI YUKI YUKI league', err }))
 })

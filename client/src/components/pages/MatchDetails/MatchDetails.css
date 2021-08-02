@@ -1,3 +1,12 @@
 .button{
     margin: 14px;
 }
+.block{
+    display: block;
+}
+.margin-botton{
+    margin-bottom: 20px;
+}
+.col{
+    text-align: center;
+}

@@ -8,8 +8,8 @@ const leagueSchema = new Schema({
         type: Schema.Types.ObjectId, ref: 'Match'
     }],
     location: {
-        type: { type: String },
-        coordinates: [Number],
+        city: String,
+        address: String
     },
     description: String,
     date: Date,
@@ -20,7 +20,6 @@ const leagueSchema = new Schema({
     }
 )
 
-leagueSchema.index({ location: '2dsphere' })
 const League = model("League", leagueSchema);
 
 module.exports = League;

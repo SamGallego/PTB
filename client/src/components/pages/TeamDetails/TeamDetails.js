@@ -4,6 +4,7 @@ import { Container, Row, Col, Card, Button } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import TeamCard from '../LeagueDetails/TeamCard'
 import PlayerCard from '../MatchDetails/PlayerCardDetails'
+import './TeamDetails.css'
 
 
 
@@ -59,7 +60,7 @@ class TeamDetails extends Component {
             .catch(err => console.log(err))
     }
 
-    
+
 
     joinTeam = () => {
 
@@ -70,7 +71,7 @@ class TeamDetails extends Component {
                     team: {
                         ...this.state.team,
                         players: [...this.state.team.players, this.props.loggedUser]
-                        
+
                     },
                     canJoin: false
                 })
@@ -87,30 +88,31 @@ class TeamDetails extends Component {
                 <Container>
 
                     <Row className="justify-content-around">
-                        <Col md={4}>
+                        <Col md={6} className='center'>
                             <h1>{this.state.team.name}</h1>
                             <Card.Img variant="top" src={this.state.team.picture} />
-                            <p>Capacity: {this.state.team.capacity}</p>
                             {this.state.canJoin && (
 
-                                <Button onClick={() => this.joinTeam()}>Join!</Button>
+                                <Button className='button' onClick={() => this.joinTeam()}>Join!</Button>
+                            )}
+                            {this.state.owner && (
+                                <>
+                                    <Button className='button' onClick={() => this.deleteTeam()} className="btn btn-danger" variant="danger" type="submit">Delete</Button>
+
+                                    <Link to={`/team/details/editteam/${this.props.match.params.id}`}>
+                                        <Button className='button' variant="success" block >Edit</Button>
+                                    </Link>
+                                </>
                             )}
                         </Col>
-                        <Col md={4}>
-                            <h2>Players:</h2>
+                        <Col md={6}>
+                            <Row className='center'>
+                                <h2>Players</h2>
 
-                            {this.state.team?.players?.map(elm => <PlayerCard {...elm} />)}
+                                {this.state.team?.players?.map(elm => <PlayerCard {...elm} />)}
+                            </Row>
 
                         </Col>
-                        {this.state.owner && (
-                            <>
-                                <Button onClick={() => this.deleteTeam()} className="btn btn-danger" variant="danger" type="submit">Delete Team</Button>
-
-                                <Link to={`/team/details/editteam/${this.props.match.params.id}`}>
-                                    <Button variant="info" block >Edit Team information</Button>
-                                </Link>
-                            </>
-                        )}
                         <Link to="/team/list" className="btn btn-dark">Back to List</Link>
 
                     </Row>

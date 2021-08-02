@@ -3,6 +3,7 @@ import LeagueService from './../../../services/league.service'
 import { Container, Row, Col, Button } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import TeamCard from './TeamCard'
+import './LeagueDetails.css'
 
 
 
@@ -63,7 +64,7 @@ class LeagueDetails extends Component {
                         <h3>Cargando</h3>
                         :
                         <Row className="justify-content-around">
-                            <Col md={3}>
+                            <Col md={6}>
 
                                 <h1>{this.state.league.name}</h1>
 
@@ -71,19 +72,18 @@ class LeagueDetails extends Component {
                                 <p>Limit: {this.state.league.limit}</p>
                                 <p>Description: {this.state.league.description}</p>
 
-                                <Row>
-                                    {this.state.league.teams.map(elm => <TeamCard key={elm._id} {...elm} />)}
-                                </Row>
-
                             </Col>
-                            <Col md={3}>
-                                <Button onClick={() => this.joinLeague()}>Join League</Button>
+                            <Col md={6}>
+                                <Button className='button' onClick={() => this.joinLeague()}>Join League</Button>
+
+                                <Button className='button' onClick={() => this.deleteLeague()} variant="danger" type="submit">Delete Match</Button>
+
+                                <Link className='button' to="/league/list" className="btn btn-dark">Back to List</Link>
                             </Col>
 
-                            <Button onClick={() => this.deleteLeague()} variant="danger" type="submit">Delete Match</Button>
-
-                            <Link to="/league/list" className="btn btn-dark">Back to List</Link>
-
+                            <Row md={6}>
+                                {this.state.league.teams.map(elm => <TeamCard key={elm._id} {...elm} />)}
+                            </Row>
 
                         </Row>
                     }

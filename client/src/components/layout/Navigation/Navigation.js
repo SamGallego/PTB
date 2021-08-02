@@ -10,7 +10,7 @@ const Navigation = ({ storeUser, loggedUser, history }) => {
     const logout = () => {
         authserVice
             .logout()
-            .then(() =>{
+            .then(() => {
                 storeUser(null)
                 history.push("/")
             })
@@ -18,15 +18,15 @@ const Navigation = ({ storeUser, loggedUser, history }) => {
     }
 
     return (
-        <Navbar collapseOnSelect expand="lg" bg="success" variant="dark">
+        <Navbar collapseOnSelect expand="lg" bg="success" variant="dark" className='nav'>
             <Container>
                 <Navbar.Brand as={Link} to="/">
                     <img className='imglogo'
-                        src= 'football.png'
+                        src='football.png'
                         width="50"
                         height="50"
                         className="d-inline-block align-top"
-                        alt="React Bootstrap logo"
+                        alt="logo"
                     />
                     <span className='logo'>PTB</span>
                 </Navbar.Brand>
@@ -56,9 +56,13 @@ const Navigation = ({ storeUser, loggedUser, history }) => {
 
 
                             <NavDropdown title="League" id="collasible-nav-dropdown">
-                                <NavDropdown.Item as={Link} to="/league/create">Create</NavDropdown.Item>
+                                {loggedUser.role == "ADMIN" &&
+                                    <NavDropdown.Item as={Link} to="/league/create">Create</NavDropdown.Item>
+                                }
+
+
                                 <NavDropdown.Item as={Link} to="/league/list">Join</NavDropdown.Item>
-                                <NavDropdown.Item as={Link} to="#action/3.3">Details</NavDropdown.Item>
+                                
                             </NavDropdown>
 
                         </Nav>
@@ -76,12 +80,12 @@ const Navigation = ({ storeUser, loggedUser, history }) => {
                         <NavDropdown title="Account" id="collasible-nav-dropdown">
                             {!loggedUser
                                 ?
-                            <>
+                                <>
 
-                                <NavDropdown.Item as={Link} to="/login">Login</NavDropdown.Item>
-                                <NavDropdown.Item as={Link} to="/signup">Signup</NavDropdown.Item>
+                                    <NavDropdown.Item as={Link} to="/login">Login</NavDropdown.Item>
+                                    <NavDropdown.Item as={Link} to="/signup">Signup</NavDropdown.Item>
 
-                            </>
+                                </>
                                 :
                                 ''
                             }

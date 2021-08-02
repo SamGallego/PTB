@@ -16,11 +16,11 @@ router.get("/", (req, res, next) =>
 
 router.post('/create', (req, res) => {
 
-    const { name, teams, matches, lat, lng, description, date, limit } = req.body
+    const { name, teams, matches, city, address, description, date, limit } = req.body
     
     const location = {
-        type: 'Point',
-        coordinates: [lat, lng]
+        city,
+        address
     }
 
     League
@@ -53,10 +53,10 @@ router.get('/details/:id', (req, res) => {
 router.post('/details/:id', (req, res) => {
 
     const { id } = req.params
-    const { name, matches, lat, lng, date, limit, teams } = req.body
+    const { name, matches, city, address, date, limit, teams } = req.body
     const location = {
-        type: 'Point',
-        coordinates: [lat, lng]
+        city,
+        address
     }
 
 

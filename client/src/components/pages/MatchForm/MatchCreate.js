@@ -8,8 +8,8 @@ class MatchForm extends Component {
         super(props)
         this.state = {
             name: '',
-            lat: '',
-            lng: '',
+            city: '',
+            address: '',
             date: '',
             description: ''
 
@@ -29,15 +29,18 @@ class MatchForm extends Component {
         e.preventDefault()
 
         this.matchService
-            .postMatchCreate(this.state.name, this.state.lat, this.state.lng, this.state.date, this.state.description, this.props.loggedUser._id)
-            .then(this.setState({
+            .postMatchCreate(this.state.name, this.state.city, this.state.address, this.state.date, this.state.description, this.props.loggedUser._id)
+            .then(() => {
+                this.setState({
                 name: '',
-                lat: '',
-                lng: '',
+                city: '',
+                address: '',
                 date: '',
                 description: '',
                 owner: this.props.loggedUser._id
-            }))
+            });
+            this.props.history.push('/match/list')
+            })
             .catch(err => console.log(err))
     }
 
@@ -52,14 +55,14 @@ class MatchForm extends Component {
                         <Form.Control type="text" value={this.state.name} onChange={this.handleInputChange} name="name" />
                     </Form.Group>
 
-                    <Form.Group controlId="lat">
-                        <Form.Label>Lat</Form.Label>
-                        <Form.Control type="text" value={this.state.lat} onChange={this.handleInputChange} name="lat" />
+                    <Form.Group controlId="city">
+                        <Form.Label>City</Form.Label>
+                        <Form.Control type="text" value={this.state.city} onChange={this.handleInputChange} name="city" />
                     </Form.Group>
 
-                    <Form.Group controlId="lng">
-                        <Form.Label>Lng</Form.Label>
-                        <Form.Control type="text" value={this.state.lng} onChange={this.handleInputChange} name="lng" />
+                    <Form.Group controlId="address">
+                        <Form.Label>Address</Form.Label>
+                        <Form.Control type="text" value={this.state.address} onChange={this.handleInputChange} name="address"/>
                     </Form.Group>
 
                     <Form.Group controlId="date">
@@ -72,7 +75,7 @@ class MatchForm extends Component {
                         <Form.Control type="description" value={this.state.description} onChange={this.handleInputChange} name="description" />
                     </Form.Group>
 
-                    <Button style={{ marginTop: '20px', width: '100%' }} variant="dark" type="submit">Create Pachanga</Button>
+                    <Button style={{ marginTop: '20px', width: '100%' }} variant="dark" type="submit">Create Match</Button>
 
                 </Form>
 
